@@ -23,7 +23,7 @@ class Summary(BaseModel):
     requirement: Union[List[str], None] = None
 
 class Reference(BaseModel):
-    rfpId: int
+    rfp_id: int
     title: str
     end_date: datetime
     manager: str
@@ -42,13 +42,13 @@ class Workforce(BaseModel):
     category: str
 
 class Task(BaseModel):
-    priority: Priority
-    competivity: Competivity
-    workforce: Workforce
+    priority: List[Priority]
+    competivity: List[Competivity]
+    workforce: List[Workforce]
 
 class Analysis(BaseModel):
     info: Info
     summary: Summary
-    reference: Union[Reference, None] = None
+    reference: Union[List[Reference], None] = None
     tasks: Union[Task, None] = None
 
