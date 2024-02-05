@@ -9,8 +9,10 @@ router = APIRouter(
     prefix="/api/v1/upload"
 )
 
-@router.post("/rfp", status_code=status.HTTP_204_NO_CONTENT)
-def upload_create(file: UploadFile = File(...),
-                  db: Session=Depends(get_db)):
+@router.post("/rfp", status_code=201)
+def upload_create(file: UploadFile = File(...), db: Session=Depends(get_db)):
     
     upload_crud.upload_rfp(db, file=file.filename)
+    return{
+        "result":"success"
+    }

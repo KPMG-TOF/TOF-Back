@@ -3,6 +3,7 @@ from domain.analysis.analysis_schema import Reference, Priority, Competivity, Wo
 from sqlalchemy.orm import Session
 import random
 from datetime import datetime
+from fastapi import HTTPException, status
 
 def get_info_list(db:Session):
     info_list = db.query(Info)\
@@ -13,6 +14,9 @@ def get_info_list(db:Session):
 
 def get_info(db: Session, rfp_id: int):
     info = db.query(Info).get(rfp_id)
+    if info is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Info with id {rfp_id} not found")
+
     return info
 
 def get_summary(db: Session, rfp_id: int):
