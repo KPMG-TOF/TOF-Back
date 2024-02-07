@@ -2,14 +2,17 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from database import get_db
-from domain.analysis import analysis_schema, analysis_crud
+from domain.docs import docs_crud
 from models import Info, Summary
 
 router=APIRouter(
-    prefix="/api/v1/reference"
+    prefix="/api/v1/docs"
 )
 
-@router.get("/{rfp_id}")
-def question_list(db: Session = Depends(get_db)):
-    _question_list = analysis_crud.get_info_list(db)
-    return _question_list
+@router.get("/{rfp_id}", status_code=status.HTTP_201_CREATED)
+def rfp_analysis(rfp_id: int, db: Session=Depends(get_db)):
+    docs_list = docs_crud.get_docs_list(db, rfp_id=rfp_id)
+
+    return {
+        "result":"success",
+    }, docs_list

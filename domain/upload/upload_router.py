@@ -24,6 +24,7 @@ def upload_create(files: List[UploadFile]  = File(...), db: Session=Depends(get_
 def upload_create(files: List[UploadFile] = File(...), rfp_id: int = Form(...), db: Session = Depends(get_db)):
     for file in files:
         upload_crud.upload_doc(db, file=file.filename, rfp_id=rfp_id)
+        
     return{
         "result":"success"
     }
