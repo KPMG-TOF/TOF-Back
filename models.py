@@ -10,6 +10,16 @@ class RFP(Base):
     file=Column(String, nullable=False)
     upload_date = Column(DateTime, nullable=False)
 
+class Doc(Base):
+    __tablename__="doc"
+
+    id=Column(Integer, primary_key=True)
+    file=Column(String, nullable=False)
+    upload_date = Column(DateTime, nullable=False)
+    rfp=relationship("RFP", backref="docs")
+
+    rfp_id = Column(Integer, ForeignKey("rfp.id"))
+
 class Info(Base):
     __tablename__ = "info"
 
@@ -20,7 +30,6 @@ class Info(Base):
     cost = Column(Integer, nullable=False)
 
     rfp_id = Column(Integer, ForeignKey("rfp.id"))
-
 
 class Summary(Base):
     __tablename__="summary"
