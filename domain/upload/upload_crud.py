@@ -36,6 +36,6 @@ def upload_rfp(db: Session, file: str):
         db.commit()
 
 def upload_doc(db: Session, file: str, rfp_id: int):
-    db_upload = Doc(file=file, upload_date=datetime.now(), rfp_id=rfp_id)
+    db_upload = Doc(file=file, date=datetime.now(), rfp_id=rfp_id, writer="작성자")
     db.add(db_upload)
     db.commit()

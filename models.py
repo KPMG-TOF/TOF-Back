@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -8,6 +8,7 @@ class RFP(Base):
 
     id=Column(Integer, primary_key=True)
     file=Column(String, nullable=False)
+    progress = Column(Boolean, default=False, nullable=False)
     upload_date = Column(DateTime, nullable=False)
 
 class Doc(Base):
@@ -15,7 +16,8 @@ class Doc(Base):
 
     id=Column(Integer, primary_key=True)
     file=Column(String, nullable=False)
-    upload_date = Column(DateTime, nullable=False)
+    date = Column(DateTime)
+    writer = Column(String)
     rfp=relationship("RFP", backref="docs")
 
     rfp_id = Column(Integer, ForeignKey("rfp.id"))
