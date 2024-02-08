@@ -1,5 +1,6 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
+from sqlalchemy import DateTime, String
 from domain.upload.upload_schema import UploadRFP
 from models import RFP, Info, Summary, Subject, Requirement, Doc
 
@@ -35,7 +36,7 @@ def upload_rfp(db: Session, file: str):
         db.add(db_requirement)
         db.commit()
 
-def upload_doc(db: Session, file: str, rfp_id: int):
-    db_upload = Doc(file=file, date=datetime.now(), rfp_id=rfp_id, writer="작성자")
+def upload_doc(db: Session, file: str, date: datetime, writer: str, rfp_id: int):
+    db_upload = Doc(file=file, date=date, rfp_id=rfp_id, writer=writer)
     db.add(db_upload)
     db.commit()

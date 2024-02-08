@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from domain.analysis import analysis_router
 from domain.upload import upload_router
 from domain.docs import docs_router
-
+from domain.rfp import rfp_router
 
 app = FastAPI()
 
@@ -23,3 +23,4 @@ app.add_middleware(
 app.include_router(analysis_router.router)
 app.include_router(upload_router.router)
 app.include_router(docs_router.router)
+app.include_router(rfp_router.router)

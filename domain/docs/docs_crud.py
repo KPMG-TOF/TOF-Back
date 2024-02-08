@@ -7,7 +7,6 @@ from fastapi import HTTPException, status
 
 def get_docs_list(db: Session, rfp_id: int):
     rfp = db.query(RFP).get(rfp_id)
-    docs = [doc.file for doc in rfp.docs]
 
-    return docs
+    return rfp.docs
 
