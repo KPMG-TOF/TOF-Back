@@ -38,8 +38,8 @@ class Summary(Base):
 
     id = Column(Integer, primary_key=True)  
     size = Column(String, nullable=False)
-    start_date = Column(DateTime, nullable=False)
-    end_date = Column(DateTime, nullable=False)
+    start_date = Column(String, nullable=False)
+    end_date = Column(String, nullable=False)
     
     rfp_id = Column(Integer, ForeignKey("rfp.id"))
 

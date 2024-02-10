@@ -9,4 +9,3 @@ def get_docs_list(db: Session, rfp_id: int):
     rfp = db.query(RFP).get(rfp_id)
 
     return rfp.docs
-

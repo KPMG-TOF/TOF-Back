@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from sqlalchemy import DateTime, String
 from domain.upload.upload_schema import UploadRFP
+from domain.rfp import rfp_summary
 from models import RFP, Info, Summary, Subject, Requirement, Doc
 
 def upload_rfp(db: Session, file: str):
@@ -9,20 +9,32 @@ def upload_rfp(db: Session, file: str):
     db.add(db_upload)
     db.commit()
 
+    json = rfp_summary.fine_tuning_summary("./RFP/RFP1.hwp")
+    print(json)
+    info = json["info"]
+    print("info", info)
+    summary = json["summary"]
+
     # info, summary 추출 필요
     # info db
-    db_info = Info(title=file, company="sso", industry="dev", cost=12342, rfp_id=db_upload.id)
+    cost_value = info["cost"]
+    if cost_value.isdigit():
+        cost = int(cost_value)
+    else:
+        cost = -1
+
+    db_info = Info(title=info["title"], company=info["company"], industry="industry", cost=cost, rfp_id=db_upload.id)
     db.add(db_info)
     db.commit()
 
     # summary db
-    db_summary = Summary(size=5453, start_date=datetime.now(), end_date=datetime.now(), rfp_id=db_upload.id)
+    db_summary = Summary(size=123,start_date=summary["start_date"], end_date=summary["end_date"], rfp_id=db_upload.id)
     db.add(db_summary)
     db.commit()
 
     # subject, requirement 추출 필요
     # subject db
-    list_subject = ["클라우드가 필요함", "클라우드가 궁금함", "어쩌구"]
+    list_subject = summary["subject"]
     for subject in list_subject:
         db_subject = Subject(content=subject, summary=db_summary)
         print(subject, db_subject)
@@ -30,7 +42,7 @@ def upload_rfp(db: Session, file: str):
         db.commit()
 
     # requirement db
-    list_requirement = ["보안이 필요함", "보안이 궁금함", "어쩌구"]
+    list_requirement = summary["requirement"]
     for requirement in list_requirement:
         db_requirement = Requirement(content=requirement, summary=db_summary)
         db.add(db_requirement)

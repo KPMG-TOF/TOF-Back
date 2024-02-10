@@ -9,11 +9,6 @@ router=APIRouter(
     prefix="/api/v1/main"
 )
 
-# Test
-@router.get("/list", response_model=list[analysis_schema.Info])
-def question_list(db: Session = Depends(get_db)):
-    _question_list = analysis_crud.get_info_list(db)
-    return _question_list
 
 # Test
 @router.get("/detail/{rfp_id}", response_model=analysis_schema.Info)
