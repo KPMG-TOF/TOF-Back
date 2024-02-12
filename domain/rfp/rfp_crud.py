@@ -31,7 +31,8 @@ def delete_rfp(db: Session, rfp_id: int):
     
 def get_progress_reference(db: Session):
     progress_list = db.query(RFP).filter(RFP.progress==True)
-    for progress in progress_list:
-        print(progress.file)
+    reference_list = [reference.id for reference in progress_list]
+
+    return reference_list
 
     

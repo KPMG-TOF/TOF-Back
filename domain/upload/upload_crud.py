@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
 from domain.upload.upload_schema import UploadRFP
-from domain.rfp import rfp_summary
+
 from models import RFP, Info, Summary, Subject, Requirement, Doc
 
 def upload_rfp(db: Session, file: str):
@@ -9,15 +9,35 @@ def upload_rfp(db: Session, file: str):
     db.add(db_upload)
     db.commit()
 
+    # rfp info, summary
     # json = rfp_summary.fine_tuning_summary("./RFP/RFP1.hwp")
+    # json = {'info': {'company': 'KEB 하나은행', 'cost': '제안사 제안 가격', 'title': 'KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서'}, 'summary': {'start_date': '2018.12', 'end_date': '2019.03', 'subject': ['안정적인 클라우드 인프라 구축', '클라우드 기반 전자결제 서비스 구성', '고가용성 및  편의성을 고려한 개발 및 운영 환경 제공'], 'requirement': ['국제사회적', '환경적 책임', '프로젝트 관리 및 품질보증', '시스템 개발 및 테스트', '시험운영지원', '교육', '레퍼런스 데이터(이미지', '문서 등) 변환', '데이 터 입력', '데이터 출력', '인터페이스', '보안', '비즈니스 로직', '운영 관리', '서비스 준비 및 종료', '시간  및 리소스 관리', '관련 법규 준수', '리스크 관리']}}
+    json = {
+                "info": {
+                    "company": "국립국어원 어문연구실 한국어진흥과",
+                    "cost": "450000000원(부가세 포함)",
+                    "title": "2022년 개방형 한국어 통합 사전 시스템 클라우드 전환"
+                },
+                "summary": {
+                    "start_date": "계약 후",
+                    "end_date": "계약 후~160일",
+                    "subject": [
+                    "한국어기초사전 및 다국어사전 시스템 개선 및 클라우드 전환",
+                    "멀티미디어 자료 나눔터 개선 및 클라우드 전환",
+                    "대구 전산센터 이전을 위한 클라우드 전환"
+                    ],
+                    "requirement": [
+                    "한국어기초사전 및 다국어사전 시스템 개선 및 클라우드 전환",
+                    "멀티미디어 자료 나눔터 개선 및 클라우드 전환",
+                    "대구 전산센터 이전을 위한 클라우드 전환"
+                    ]
+                }
+                }
 
-    json = {'info': {'company': 'KEB 하나은행', 'cost': '제안사 제안 가격', 'title': 'KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서'}, 'summary': {'start_date': '2018.12', 'end_date': '2019.03', 'subject': ['안정적인 클라우드 인프라 구축', '클라우드 기반 전자결제 서비스 구성', '고가용성 및  편의성을 고려한 개발 및 운영 환경 제공'], 'requirement': ['국제사회적', '환경적 책임', '프로젝트 관리 및 품질보증', '시스템 개발 및 테스트', '시험운영지원', '교육', '레퍼런스 데이터(이미지', '문서 등) 변환', '데이 터 입력', '데이터 출력', '인터페이스', '보안', '비즈니스 로직', '운영 관리', '서비스 준비 및 종료', '시간  및 리소스 관리', '관련 법규 준수', '리스크 관리']}}
 
-    print(json)
     info = json["info"]
     summary = json["summary"]
 
-    # info, summary 추출 필요
     # info db
     cost_value = info["cost"]
     if cost_value.isdigit():

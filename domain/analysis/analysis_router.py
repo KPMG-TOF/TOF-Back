@@ -20,7 +20,7 @@ def rfp_detail(rfp_id: int, db: Session = Depends(get_db)):
 def rfp_analysis(rfp_id: int, db: Session=Depends(get_db)):
     rfp_info = analysis_crud.get_info(db, rfp_id=rfp_id)
     rfp_summary = analysis_crud.get_summary(db, rfp_id=rfp_id)
-    rfp_reference = analysis_crud.get_reference(rfp_id=rfp_id)
+    rfp_reference = analysis_crud.get_reference(db, rfp_id=rfp_id)
     rfp_tasks = analysis_crud.get_tasks(rfp_id=rfp_id)
 
     return {

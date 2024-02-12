@@ -21,10 +21,19 @@ def upload_create(files: List[UploadFile]  = File(...), db: Session=Depends(get_
         "rfp_id": rfp_id
     }
 
-@router.post("/doc", status_code=201)
+@router.post("/doc/file", status_code=201)
 def upload_create(files: List[UploadFile] = File(...), rfp_id: int = Form(...), date: datetime = Form(...), writer: str =Form(...), db: Session = Depends(get_db)):
     for file in files:
         upload_crud.upload_doc(db, file=file.filename, rfp_id=rfp_id, date=date, writer=writer)
+        
+    return{
+        "result":"success"
+    }
+
+@router.post("/doc/link", status_code=201)
+def upload_create(link: str = Form(...), rfp_id: int = Form(...), date: datetime = Form(...), writer: str =Form(...), db: Session = Depends(get_db)):
+
+    upload_crud.upload_doc(db, file=link, rfp_id=rfp_id, date=date, writer=writer)
         
     return{
         "result":"success"

@@ -34,7 +34,3 @@ def delete_rfp(rfp_id: int, db: Session = Depends(get_db)):
         return {"result": "success", "message": f"RFP with ID {rfp_id} deleted successfully"}
     else:
         return {"result": "error", "message": f"RFP with ID {rfp_id} not found"}
-
-@router.get("/progress")
-def get_reference_list(db: Session = Depends(get_db)):
-    rfp_crud.get_progress_reference(db)
