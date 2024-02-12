@@ -28,7 +28,6 @@ class Info(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     company = Column(String, nullable=False)
-    industry = Column(String, nullable=False)
     cost = Column(Integer, nullable=False)
 
     rfp_id = Column(Integer, ForeignKey("rfp.id"))
@@ -37,9 +36,16 @@ class Summary(Base):
     __tablename__="summary"
 
     id = Column(Integer, primary_key=True)  
-    size = Column(String, nullable=False)
     start_date = Column(String, nullable=False)
     end_date = Column(String, nullable=False)
+
+    @property
+    def subject_list(self):
+        return [subject.content for subject in self.subjects]
+    
+    @property
+    def requirement_list(self):
+        return [requirement.content for requirement in self.requirements]
     
     rfp_id = Column(Integer, ForeignKey("rfp.id"))
 

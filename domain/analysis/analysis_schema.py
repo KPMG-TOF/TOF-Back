@@ -4,19 +4,16 @@ from typing import Union, List
 
 class Info(BaseModel):
     company: str
-    industry: str
     cost: int
     title: str
 
 # class Summary(BaseModel):
-#     size: int
 #     start_date: datetime
 #     end_date: datetime
 #     subject: List[str]
 #     requirement: List[str]
 
 class Summary(BaseModel):
-    size: int
     start_date: datetime
     end_date: datetime
     subject: Union[List[str], None] = None

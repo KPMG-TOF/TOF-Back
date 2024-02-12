@@ -1,0 +1,11 @@
+alembic init migrations
+
+alembic revision --autogenerate
+alembic upgrade head
+
+import models
+target_metadata = models.Base.metadata
+
+uvicorn main:app --reload
+
+https://m.cafe.naver.com/ca-fe/web/cafes/cjunit/articles/1697?useCafeId=false&tc

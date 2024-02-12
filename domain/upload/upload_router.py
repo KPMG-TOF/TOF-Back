@@ -14,11 +14,11 @@ router = APIRouter(
 @router.post("/rfp", status_code=201)
 def upload_create(files: List[UploadFile]  = File(...), db: Session=Depends(get_db)):
     for file in files:
-        upload_crud.upload_rfp(db, file=file.filename)
-        print(file.filename)
+        rfp_id = upload_crud.upload_rfp(db, file=file.filename)
 
     return{
-        "result":"success"
+        "result":"success",
+        "rfp_id": rfp_id
     }
 
 @router.post("/doc", status_code=201)

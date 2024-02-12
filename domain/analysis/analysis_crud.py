@@ -13,21 +13,23 @@ def get_info_list(db:Session):
     return info_list
 
 def get_info(db: Session, rfp_id: int):
-    info = db.query(Info).get(rfp_id)
+    info = db.query(Info).filter(Info.rfp_id == rfp_id).first()
     if info is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Info with id {rfp_id} not found")
 
     return info
 
 def get_summary(db: Session, rfp_id: int):
-    summary = db.query(Summary).get(rfp_id)
-    subjects = [subject.content for subject in summary.subjects]
-    requirements = [requirement.content for requirement in summary.requirements]
+    summary = db.query(Summary).filter(Summary.rfp_id == rfp_id).first()
+    
 
-    summary.subject = subjects
-    summary.requirement = requirements
+    # subjects = [subject.content for subject in summary.subjects]
+    # requirements = [requirement.content for requirement in summary.requirements]
 
-    return summary
+    # summary.subject = [subject.content for subject in summary.subjects]
+    # summary.requirement = requirements
+
+    return {"id": summary.id, "start_date":summary.start_date, "end_date":summary.end_date, "rfp_id":summary.rfp_id, "subjects": summary.subject_list, "requirements": summary.requirement_list }
 
 def get_reference(rfp_id: int):
     list_reference = []

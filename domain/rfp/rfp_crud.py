@@ -28,3 +28,10 @@ def delete_rfp(db: Session, rfp_id: int):
         return True
     else:
         return False
+    
+def get_progress_reference(db: Session):
+    progress_list = db.query(RFP).filter(RFP.progress==True)
+    for progress in progress_list:
+        print(progress.file)
+
+    
