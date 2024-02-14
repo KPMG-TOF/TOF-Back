@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Form, File, UploadFile 
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from sqlalchemy import String
 from starlette import status
@@ -38,3 +39,10 @@ def upload_create(link: str = Form(...), rfp_id: int = Form(...), date: datetime
     return{
         "result":"success"
     }
+
+@router.post("/download", status_code=201)
+def download_file(id: int = Form(...), db: Session=Depends(get_db)):
+    file = upload_crud.download_file(db, id)
+    file_path = f"D:/TOF-Back/domain/rfp/summary/RFP/RFP1.hwp"
+
+    return FileResponse(file_path, media_type="application/octet-stream", filename="RFP1.hwp")

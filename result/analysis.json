@@ -1,0 +1,78 @@
+
+{
+    "result": "success",
+    "info": {
+        "id": 11,
+        "title": "2022년 개방형 한국어 통합 사전 시스템 클라우드 전환",
+        "company": "국립국어원 어문연구실 한국어진흥과",
+        "cost": -1,
+        "rfp_id": 19
+    },
+    "summary": {
+        "start_date": "계약 후",
+        "end_date": "계약 후~160일",
+        "rfp_id": 19,
+        "subjects": [
+            "한국어기초사전 및 다국어사전 시스템 개선 및 클라우드 전환",
+            "멀티미디어 자료 나눔터 개선 및 클라우드 전환",
+            "대구 전산센터 이전을 위한 클라우드 전환"
+        ],
+        "requirements": [
+            "한국어기초사전 및 다국어사전 시스템 개선 및 클라우드 전환",
+            "멀티미디어 자료 나눔터 개선 및 클라우드 전환",
+            "대구 전산센터 이전을 위한 클라우드 전환"
+        ]
+    },
+    "reference": [
+        {
+            "rfp_id": 2,
+            "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
+            "end_date": "1970-01-01T00:33:39.030000Z",
+            "manager": "sso",
+            "similarity": 60
+        },
+        {
+            "rfp_id": 9,
+            "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
+            "end_date": "1970-01-01T00:33:39.030000Z",
+            "manager": "sso",
+            "similarity": 30
+        }
+    ],
+    "tasks": {
+        "priority": [
+            {
+                "order": 13,
+                "title": "priority"
+            },
+            {
+                "order": 17,
+                "title": "priority"
+            },
+            {
+                "order": 5,
+                "title": "priority"
+            },
+            {
+                "order": 5,
+                "title": "priority"
+            }
+        ],
+        "competivity": [
+            {
+                "order": 216,
+                "title": "competivity"
+            }
+        ],
+        "workforce": [
+            {
+                "count": 409,
+                "category": "workforce"
+            },
+            {
+                "count": 432,
+                "category": "workforce"
+            }
+        ]
+    }
+}
