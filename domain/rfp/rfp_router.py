@@ -14,7 +14,8 @@ router=APIRouter(
 def get_rfp_list(db: Session = Depends(get_db)):
     list = rfp_crud.get_rfp_list(db)
     if list:
-        return {"result":"success"}, list
+        return {"result":"success",
+                "rfp_list": list}
     else:
         return {"result":"error"}
 

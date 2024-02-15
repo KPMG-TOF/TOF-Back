@@ -28,7 +28,7 @@ class Info(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     company = Column(String, nullable=False)
-    cost = Column(Integer, nullable=False)
+    cost = Column(String, nullable=False)
 
     rfp_id = Column(Integer, ForeignKey("rfp.id"))
 
