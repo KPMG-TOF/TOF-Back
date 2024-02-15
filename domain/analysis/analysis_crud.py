@@ -55,17 +55,22 @@ def get_reference(db: Session,rfp_id: int):
         ref_json = {"info": rfp_info, "summary": rfp_summary}
 
         similarity, keywords = rfp_similarity.get_similarity(json, ref_json)
-
+        print(keywords, similarity)
         list_reference.append(
             Reference(rfp_id=rfp_info["id"], 
                       title=rfp_info["title"],
                       end_date=rfp_summary["end_date"], 
                       manager="sso", 
-                      similarity=similarity))
+                      similarity=similarity,
+                        keyword =keywords
+
+                      ))
         
+    print(list_reference)
     return list_reference
 
 def get_priority(rfp_id: int):
+
     list_priority=[]
     for _ in range(random.randrange(1,5)):
         order = random.randrange(1,20)

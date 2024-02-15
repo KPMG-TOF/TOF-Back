@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from datetime import datetime
 from typing import Union, List
 
 class Info(BaseModel):
@@ -8,22 +7,23 @@ class Info(BaseModel):
     title: str
 
 # class Summary(BaseModel):
-#     start_date: datetime
-#     end_date: datetime
+#     start_date: str
+#     end_date: str
 #     subject: List[str]
 #     requirement: List[str]
 
 class Summary(BaseModel):
-    start_date: datetime
-    end_date: datetime
+    start_date: str
+    end_date: str
     subject: Union[List[str], None] = None
     requirement: Union[List[str], None] = None
 
 class Reference(BaseModel):
     rfp_id: int
     title: str
-    end_date: datetime
+    end_date: str
     manager: str
+    keyword: List[str]
     similarity: float
 
 class Priority(BaseModel):

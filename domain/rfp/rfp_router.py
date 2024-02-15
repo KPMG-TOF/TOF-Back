@@ -20,7 +20,7 @@ def get_rfp_list(db: Session = Depends(get_db)):
         return {"result":"error"}
 
 
-@router.post("/update/progress/{rfp_id}", status_code = 200)
+@router.get("/update/progress/{rfp_id}", status_code = 200)
 def rfp_update(rfp_id: int, db: Session = Depends(get_db)):
     response = rfp_crud.update_rfp_progress(db, rfp_id)
     if response:
@@ -28,7 +28,7 @@ def rfp_update(rfp_id: int, db: Session = Depends(get_db)):
     else:
         return {"result":"error"}
 
-@router.post("/delete/{rfp_id}", status_code=200)
+@router.get("/delete/{rfp_id}", status_code=200)
 def delete_rfp(rfp_id: int, db: Session = Depends(get_db)):
     success = rfp_crud.delete_rfp(db, rfp_id)
     if success:

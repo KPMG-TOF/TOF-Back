@@ -13,9 +13,9 @@ router = APIRouter(
 )
 
 @router.post("/rfp", status_code=201)
-def upload_create(files: List[UploadFile]  = File(...), db: Session=Depends(get_db)):
-    for file in files:
-        rfp_id = upload_crud.upload_rfp(db, file=file.filename)
+def upload_create(file: UploadFile  = File(...), db: Session=Depends(get_db)):
+    # for file in files:
+    rfp_id = upload_crud.upload_rfp(db, file=file.filename)
 
     return{
         "result":"success",
@@ -23,9 +23,9 @@ def upload_create(files: List[UploadFile]  = File(...), db: Session=Depends(get_
     }
 
 @router.post("/doc/file", status_code=201)
-def upload_create(files: List[UploadFile] = File(...), rfp_id: int = Form(...), date: datetime = Form(...), writer: str =Form(...), db: Session = Depends(get_db)):
-    for file in files:
-        upload_crud.upload_doc(db, file=file.filename, rfp_id=rfp_id, date=date, writer=writer)
+def upload_create(file: UploadFile = File(...), rfp_id: int = Form(...), date: datetime = Form(...), writer: str =Form(...), db: Session = Depends(get_db)):
+    # for file in files:
+    upload_crud.upload_doc(db, file=file.filename, rfp_id=rfp_id, date=date, writer=writer)
         
     return{
         "result":"success"

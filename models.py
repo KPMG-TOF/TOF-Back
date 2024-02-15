@@ -9,14 +9,14 @@ class RFP(Base):
     id=Column(Integer, primary_key=True)
     file=Column(String, nullable=False)
     progress = Column(Boolean, default=False, nullable=False)
-    upload_date = Column(DateTime, nullable=False)
+    upload_date = Column(String, nullable=False)
 
 class Doc(Base):
     __tablename__="doc"
 
     id=Column(Integer, primary_key=True)
     file=Column(String, nullable=False)
-    date = Column(DateTime)
+    date = Column(String)
     writer = Column(String)
     rfp=relationship("RFP", backref="docs")
 
