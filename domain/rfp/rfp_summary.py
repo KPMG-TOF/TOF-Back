@@ -89,27 +89,27 @@ def create_json_dict(info1, info2, info3,info4):
 def fine_tuning_summary(*rfp_files):
     for rfp_file in rfp_files:
         
-        # process = Popen(['hwp5txt', rfp_file], stdout=PIPE, stderr=PIPE)
-        # stdout, stderr = process.communicate()
-        # data = stdout.decode('utf-8')
+        process = Popen(['hwp5txt', rfp_file], stdout=PIPE, stderr=PIPE)
+        stdout, stderr = process.communicate()
+        data = stdout.decode('utf-8')
 
         rfp_name = rfp_file.split('/')[2].split(".")[0]
 
         # Verify that 'data' is not empty before proceeding
         if rfp_name:
-            # split_data = data.split('\n\n')
-            # filtered_data = [line for line in split_data if '<표>' not in line and line.strip() != '']
+            split_data = data.split('\n\n')
+            filtered_data = [line for line in split_data if '<표>' not in line and line.strip() != '']
 
-            # # Create a dictionary with the 'text' key
-            # json_data = {'text': filtered_data}
+            # Create a dictionary with the 'text' key
+            json_data = {'text': filtered_data}
 
-            # json_data_str = json.dumps(json_data, ensure_ascii=False)
-            # total_length = len(json_data_str)
-            # start_index = 0 
-            # end_index = total_length // 3
+            json_data_str = json.dumps(json_data, ensure_ascii=False)
+            total_length = len(json_data_str)
+            start_index = 0 
+            end_index = total_length // 3
 
-            # partial_json_data_str1 = json_data_str[start_index:end_index]
-            # partial_json_data_str2 = json_data_str[end_index:end_index+4097]
+            partial_json_data_str1 = json_data_str[start_index:end_index]
+            partial_json_data_str2 = json_data_str[end_index:end_index+4097]
 
             if "RFP1" in rfp_file:
             # Define questions
